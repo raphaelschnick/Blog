@@ -1,0 +1,111 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Raphael Schnick">
+    <title>Blog</title>
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+
+    <style>
+        .container{
+            margin-top: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .col-md-6 {
+            padding: 0;
+        }
+        #counter {
+            background-color: transparent;
+            border-color: transparent;
+        }
+        input:focus {
+            border-color: #999 !important;
+            box-shadow: 0 0 5px #999 !important;
+        }
+        textarea:focus {
+            border-color: #999 !important;
+            box-shadow: 0 0 5px #999 !important;
+        }
+        #category:focus {
+            border-color: #999 !important;
+            box-shadow: 0 0 5px #999 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="text-muted" href="#">Subscribe</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" th:href="'/'">Blog</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="text-muted" href="#" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+                </a>
+                <a class="btn btn-sm btn-outline-secondary" th:href="'/blog/add'">New Blog</a>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="container">
+    <h1>Neuer Blog</h1>
+    <br>
+    <form action="#" th:action="@{/blog/add}" method="post" th:object="${blog}">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="name">Name</label>
+                <input required type="text" class="form-control" id="name" placeholder="Name" th:field="*{name}">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="category">Category</label>
+                <select required id="category" class="form-control" th:field="*{category}">
+                    <option value="" selected>Select</option>
+                    <option th:each="category : ${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" placeholder="Description" type="text" th:field="*{description}" rows="7"
+                      maxlength="256" onkeyup="textCounter(this, 'counter', 256); "></textarea>
+            <input disabled  maxlength="256" value="256" id="counter">
+        </div>
+        <div class="form-group">
+            <label for="text">Text</label>
+            <textarea required type="text" class="form-control" id="text" placeholder="Text" th:field="*{text}" rows="20"></textarea>
+        </div>
+        <button type="submit" class="btn btn-sm btn-outline-secondary">Post</button>
+        <br><br>
+    </form>
+</div>
+<script>
+    function textCounter(field,field2,maxlimit)
+    {
+        var countfield = document.getElementById(field2);
+        if ( field.value.length > maxlimit ) {
+            field.value = field.value.substring( 0, maxlimit );
+            return false;
+        } else {
+            countfield.value = maxlimit - field.value.length;
+        }
+    }
+</script>
+<footer class="blog-footer">
+    <p>Blog</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+</body>
+</html>

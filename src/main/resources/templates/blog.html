@@ -1,0 +1,70 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Raphael Schnick">
+    <title>Blog</title>
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
+
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="text-muted" href="#">Subscribe</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" th:href="'/'">Blog</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="text-muted" href="#" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+                </a>
+                <a class="btn btn-sm btn-outline-secondary" th:href="'/blog/add'">New Blog</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <div th:each="category : ${categoryList}">
+                <a class="p-2" th:style="'color: ' + ${category.color}" href="#" th:text="${category.name}"></a>
+            </div>
+        </nav>
+    </div>
+</div>
+<main role="main" class="container">
+    <div class="blog-post">
+        <h2 class="blog-post-title" th:text="${blog.name}"></h2>
+        <p class="blog-post-meta" th:text="${blog.dateAsString}"></p>
+        <a class="blog-post-meta" th:text="${blog.user.name}" th:href="'/user?id=' + ${blog.user.id}"></a>
+
+        <div class="row">
+            <div class="col">
+                <p th:text="${blog.description}"></p>
+            </div>
+            <div class="col">
+                <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            </div>
+        </div>
+        <br><br>
+        <p th:text="${blog.text}"></p>
+    </div>
+</main>
+</body>
+<footer class="blog-footer">
+    <p>Blog</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+</html>

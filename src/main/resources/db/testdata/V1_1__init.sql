@@ -1,0 +1,15 @@
+INSERT INTO user (name, password) VALUES
+    ('admin', '12345'),
+    ('raphael', '30122003');
+
+INSERT INTO category (name, color) VALUES
+    ('IT', 'black'),
+    ('Politik', 'red'),
+    ('Wirtschaft', 'green'),
+    ('Sport', 'blue');
+
+INSERT INTO blog (name, date, description, text, image, user_id, category_id) VALUES
+    ('Lorem ipsum dolor', '2020-10-20', 'Lorem ipsum dolor si consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore e dolore magna aliq.', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e', 'src/static/images/blog_1', 1, 2),
+    ('Lorem ipsum dolor si', '2020-11-11', 'Lorem ipsum dolor si, consetetur sadipscin elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliq.', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e', 'src/static/images/blog_2', 2, 1),
+     ('Lorem ipsum', '2020-01-01', 'Lorem ipsum dolor si, consetetur sadipscin elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliq.', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e', 'src/static/images/blog_3', 2, 4),
+    ('Lorem ipsum', '2020-11-11', 'Lorem ipsumconsetetur sadipscin elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliq.', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et e', 'src/static/images/blog_4', 2, 3);
