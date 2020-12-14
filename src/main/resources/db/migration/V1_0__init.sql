@@ -9,6 +9,7 @@ CREATE TABLE user (
 CREATE TABLE category (
     id bigint NOT NULL AUTO_INCREMENT,
     name character varying(256),
+    description character varying(512),
     color character,
 
     CONSTRAINT PK_category_id PRIMARY KEY (id)

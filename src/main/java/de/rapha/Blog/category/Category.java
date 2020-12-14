@@ -18,6 +18,9 @@ public class Category {
     @Column(name ="name", nullable = false, unique = false)
     private String name;
 
+    @Column(name = "description", nullable = false, unique = true)
+    private String description;
+
     @Column(name ="color", nullable = false, unique = false)
     private String color;
 
@@ -45,11 +48,20 @@ public class Category {
         this.color = color;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", color='" + color + '\'' +
                 '}';
     }

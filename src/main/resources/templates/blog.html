@@ -37,11 +37,12 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <div th:each="category : ${categoryList}">
-                <a class="p-2" th:style="'color: ' + ${category.color}" href="#" th:text="${category.name}"></a>
+                <a class="p-2" th:text="${category.name}" th:style="'color: ' + ${category.color}" th:href="'/category?id=' + ${category.id}"></a>
             </div>
         </nav>
     </div>
 </div>
+
 <main role="main" class="container">
     <div class="blog-post">
         <h2 class="blog-post-title" th:text="${blog.name}"></h2>
