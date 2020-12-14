@@ -55,13 +55,13 @@ public class BlogAddController {
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
-        blog.setImage(fileName);
+        blog.setThumbnail(fileName);
         blog.setDate(new Date());
         blog.setUser(user);
 
         Blog result = blogService.add(blog);
 
-        String uploadDir = "blog/" + result.getId();
+        String uploadDir = "src/main/resources/static/data/blogs/" + result.getId();
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 

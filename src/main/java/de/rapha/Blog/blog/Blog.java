@@ -32,8 +32,8 @@ public class Blog {
     @Column(name="text", nullable = false, unique = false)
     private String text;
 
-    @Column(name="image", nullable = true, unique = false)
-    private String image;
+    @Column(nullable = true, length = 64)
+    private String thumbnail;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false, unique = false)
@@ -83,14 +83,6 @@ public class Blog {
         this.text = text;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public User getUser() {
         return user;
     }
@@ -107,6 +99,15 @@ public class Blog {
         this.category = category;
     }
 
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
     public String getDateAsString() {
         final String PATTERN = "dd.MM.yyyy";
         DateFormat df = new SimpleDateFormat(PATTERN);
@@ -115,9 +116,9 @@ public class Blog {
 
     @Transient
     public String getPhotosImagePath() {
-        if (image == null || id == null) return null;
+        if (thumbnail == null || id == null) return null;
 
-        return "/blog/" + id + "/" + image;
+        return "/data/blogs/" + id + "/" + thumbnail;
     }
 
     @Override
@@ -128,7 +129,7 @@ public class Blog {
                 ", date=" + date +
                 ", description='" + description + '\'' +
                 ", text='" + text + '\'' +
-                ", image='" + image + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
                 ", user=" + user +
                 ", category=" + category +
                 '}';
