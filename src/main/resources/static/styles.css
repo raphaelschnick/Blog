@@ -113,3 +113,12 @@ a:hover {
     min-height: 300px;
     max-height: 300px;
 }
+.shadow-sm {
+    transition-duration: 0.5s;
+    transition-property: all;
+    box-shadow: 0 0 7px #999 !important;
+}
+.shadow-sm:hover {
+    animation: 0.5s ease-in-out;
+    box-shadow: 0 0 15px #999 !important;
+}
