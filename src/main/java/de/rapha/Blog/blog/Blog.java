@@ -113,6 +113,13 @@ public class Blog {
         return df.format(this.getDate());
     }
 
+    @Transient
+    public String getPhotosImagePath() {
+        if (image == null || id == null) return null;
+
+        return "/blog/" + id + "/" + image;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
