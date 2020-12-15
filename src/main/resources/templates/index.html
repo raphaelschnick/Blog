@@ -75,7 +75,7 @@
                     <a th:href="'/blog?id=' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
-                    <img th:src="${blog.photosImagePath}">
+                    <img th:src="@{${blog.photosImagePath}}">
                 </div>
             </div>
         </div>
