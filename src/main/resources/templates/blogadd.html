@@ -67,7 +67,7 @@
 <div class="container">
     <h1>Neuer Blog</h1>
     <br>
-    <form action="#" th:action="@{/blog/add}" method="post" th:object="${blog}" enctype="multipart/form-data">
+    <form th:action="@{/blog/add}" method="post" th:object="${blog}" enctype="multipart/form-data">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="name">Name</label>
@@ -83,33 +83,17 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" placeholder="Description" type="text" th:field="*{description}" rows="7"
-                      maxlength="256" onkeyup="textCounter(this, 'counter', 256); "></textarea>
-            <input disabled  maxlength="256" value="256" id="counter">
+            <textarea class="form-control" id="description" placeholder="Description" type="text" th:field="*{description}" rows="2"
+                      maxlength="120" onkeyup="textCounter(this, 'counter', 120); "></textarea>
+            <input disabled  maxlength="120" value="120" id="counter">
         </div>
         <div class="form-group">
-            <label for="image">Thumbnail</label><br>
-            <input id="image" type="file" name="image" accept="image/png, image/jpeg" />
+            <label>Thumbnail</label><br>
+            <input type="file" name="image" accept="image/png, image/jpeg"/>
         </div>
         <div class="form-group">
             <label for="editor">Blog</label>
-            <textarea cols="80" id="editor" name="editor" rows="10" th:field="*{text}">
-            &lt;h1&gt;&lt;img alt=&quot;Saturn V carrying Apollo 11&quot; style=&quot;float:right;margin:10px&quot; src=&quot;assets/sample.jpg&quot;/&gt; Apollo 11&lt;/h1&gt;
-
-            &lt;p&gt;&lt;strong&gt;Apollo 11&lt;/strong&gt; was the spaceflight that landed the first humans, Americans &lt;a href=&quot;http://en.wikipedia.org/wiki/Neil_Armstrong&quot;&gt;Neil
-            Armstrong&lt;/a&gt; and
-            &lt;a href=&quot;http://en.wikipedia.org/wiki/Buzz_Aldrin&quot;&gt;Buzz Aldrin&lt;/a&gt;, on the Moon on July 20, 1969, at 20:18 UTC. Armstrong became the first to step onto the
-            lunar surface 6 hours
-            later on July 21 at 02:56 UTC.&lt;/p&gt;
-
-            &lt;p&gt;Armstrong spent about &lt;s&gt;three and a half&lt;/s&gt; two and a half hours outside the spacecraft, Aldrin slightly less; and together they collected 47.5 pounds (21.5&amp;nbsp;kg)
-            of lunar
-            material for return to Earth. A third member of the mission, &lt;a href=&quot;http://en.wikipedia.org/wiki/Michael_Collins_(astronaut)&quot;&gt;Michael Collins&lt;/a&gt;, piloted
-            the
-            &lt;a href=&quot;http://en.wikipedia.org/wiki/Apollo_Command/Service_Module&quot;&gt;command&lt;/a&gt; spacecraft alone in lunar orbit until Armstrong and Aldrin returned to it for
-            the trip back to
-            Earth.&lt;/p&gt;
-            </textarea>
+            <textarea id="editor" name="editor" rows="20" th:field="*{text}"></textarea>
             <script>
                 CKEDITOR.inline('editor');
             </script>

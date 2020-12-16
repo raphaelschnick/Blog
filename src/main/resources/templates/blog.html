@@ -54,7 +54,7 @@
                 <p th:text="${blog.description}"></p>
             </div>
             <div class="col">
-                <img th:src="/@{${blog.photosImagePath}}">
+                <img th:src="${blog.imagePath}" class="img-fluid">
             </div>
         </div>
         <br><br>

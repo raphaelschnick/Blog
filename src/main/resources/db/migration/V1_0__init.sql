@@ -21,7 +21,7 @@ CREATE TABLE blog (
     date date,
     description character varying(126),
     text character,
-    image character,
+    thumbnail varchar,
     user_id bigint,
     category_id bigint,
 

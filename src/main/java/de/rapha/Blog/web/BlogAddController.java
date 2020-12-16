@@ -2,7 +2,7 @@ package de.rapha.Blog.web;
 
 import de.rapha.Blog.blog.Blog;
 import de.rapha.Blog.blog.BlogService;
-import de.rapha.Blog.blog.FileUploadUtil;
+import de.rapha.Blog.utils.FileUploadUtil;
 import de.rapha.Blog.category.Category;
 import de.rapha.Blog.category.CategoryService;
 import de.rapha.Blog.user.User;
@@ -55,13 +55,13 @@ public class BlogAddController {
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
-        blog.setImage(fileName);
+        blog.setThumbnail(fileName);
         blog.setDate(new Date());
         blog.setUser(user);
 
         Blog result = blogService.add(blog);
 
-        String uploadDir = "blog/" + result.getId();
+        String uploadDir = "data/blogs/" + result.getId();
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
