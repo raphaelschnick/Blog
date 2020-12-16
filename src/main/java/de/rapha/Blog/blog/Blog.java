@@ -115,7 +115,7 @@ public class Blog {
     }
 
     @Transient
-    public String getPhotosImagePath() {
+    public String getImagePath() {
         if (thumbnail == null || id == null) return null;
 
         return "/data/blogs/" + id + "/" + thumbnail;

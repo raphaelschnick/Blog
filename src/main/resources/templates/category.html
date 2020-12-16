@@ -11,13 +11,10 @@
     <link href="/styles.css" rel="stylesheet">
 
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+        @media only screen and (max-width: 991px){
+            #image {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -43,18 +40,22 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <div th:each="category : ${categoryList}">
-                <a class="p-2" th:style="'color: ' + ${category.color}" href="#" th:text="${category.name}" th:href="'/category?id=' + ${category.id}"></a>
+                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/category?id=' + ${category.id}"></a>
             </div>
         </nav>
     </div>
-
-    <a th:href="'/blog?id=' + ${newBlog.id}" class="" style="color: white;">
+    <a th:href="'/blog?id=' + ${newBlog.id}" style="color: white;">
         <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-            <div class="col-md-6 px-0">
-                <strong class="d-inline-block mb-2" th:style="'color: ' + ${newBlog.category.color}" th:text="${newBlog.category.name}"></strong>
-                <h3 class="display-4 font-italic" th:text="${newBlog.name}"></h3>
-                <div class="mb-1" th:text="${newBlog.dateAsString}"></div>
-                <p class="lead my-3" th:text="${newBlog.description}"></p>
+            <div class="row">
+                <div class="col">
+                    <strong class="d-inline-block mb-2" th:style="'color: ' + ${newBlog.category.color}" th:text="${newBlog.category.name}"></strong>
+                    <h3 class="display-4 font-italic" th:text="${newBlog.name}"></h3>
+                    <div class="mb-1" th:text="${newBlog.dateAsString}"></div>
+                    <p class="lead my-3" th:text="${newBlog.description}"></p>
+                </div>
+                <div class="col" id="image">
+                    <img th:src="@{${newBlog.imagePath}}" class="img-fluid">
+                </div>
             </div>
             <p class="text-white font-weight-bold">
                 <a th:href="'/blog?id=' + ${newBlog.id}" style="color: white;">Continue reading</a>
@@ -69,14 +70,24 @@
                     <strong class="d-inline-block mb-2" th:style="'color: ' + ${blog.category.color}" th:text="${blog.category.name}"></strong>
                     <h3 class="mb-0" th:text="${blog.name}"></h3>
                     <div class="mb-1 text-muted" th:text="${blog.dateAsString}"></div>
-                    <p class="card-text mb-auto" th:text="${blog.description}"></p>
-                    <br>
-                    <a th:href="'/blog?id=' + ${blog.id}" class="stretched-link">Continue reading</a>
+                    <p class="card-text" th:text="${blog.description}"></p>
+                    <a th:href="'/blog?id=' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
                 </div>
-                <div class="col-auto d-none d-lg-block">
-                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                <div class="col d-none d-lg-block" id="image">
+                    <img th:src="@{${blog.imagePath}}" class="img-fluid">
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            <nav class="blog-pagination">
+                <a class="btn btn-outline-primary" href="#">Older</a>
+                <a class="btn btn-outline-secondary disabled" href="#" tabindex="-1" aria-disabled="true">Newer</a>
+            </nav>
         </div>
     </div>
 </div>

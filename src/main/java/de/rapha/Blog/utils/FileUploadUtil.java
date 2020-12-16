@@ -1,4 +1,4 @@
-package de.rapha.Blog.blog;
+package de.rapha.Blog.utils;
 
 import java.io.*;
 import java.nio.file.*;

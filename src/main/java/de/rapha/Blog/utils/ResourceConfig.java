@@ -1,4 +1,4 @@
-package de.rapha.Blog.blog;
+package de.rapha.Blog.utils;
 
 
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +10,6 @@ public class ResourceConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/data/blogs/**").addResourceLocations("file:sata/blogs/");
+        registry.addResourceHandler("data/blogs/**").addResourceLocations("file:data/blogs/");
     }
 }

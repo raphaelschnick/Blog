@@ -83,17 +83,17 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" placeholder="Description" type="text" th:field="*{description}" rows="7"
-                      maxlength="256" onkeyup="textCounter(this, 'counter', 256); "></textarea>
-            <input disabled  maxlength="256" value="256" id="counter">
+            <textarea class="form-control" id="description" placeholder="Description" type="text" th:field="*{description}" rows="2"
+                      maxlength="120" onkeyup="textCounter(this, 'counter', 120); "></textarea>
+            <input disabled  maxlength="120" value="120" id="counter">
         </div>
         <div class="form-group">
             <label>Thumbnail</label><br>
-            <input type="file" name="image" accept="image/png, image/jpeg" />
+            <input type="file" name="image" accept="image/png, image/jpeg"/>
         </div>
         <div class="form-group">
             <label for="editor">Blog</label>
-            <textarea cols="80" id="editor" name="editor" rows="10" th:field="*{text}"></textarea>
+            <textarea id="editor" name="editor" rows="20" th:field="*{text}"></textarea>
             <script>
                 CKEDITOR.inline('editor');
             </script>
