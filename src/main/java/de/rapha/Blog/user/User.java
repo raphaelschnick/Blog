@@ -1,6 +1,7 @@
 package de.rapha.Blog.user;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
 @Entity
@@ -17,6 +18,12 @@ public class User {
     @Column(name="name", nullable = false, unique = false)
     private String name;
 
+    @Column(name="email", nullable = true, unique = false)
+    private String email;
+
+    @Column(name="description", nullable = true, unique = false)
+    private String description;
+
     @Column(name="password", nullable = false, unique = false)
     private String password;
 
@@ -26,6 +33,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getId() {
@@ -44,11 +59,21 @@ public class User {
         this.password = password;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

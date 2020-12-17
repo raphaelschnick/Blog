@@ -39,6 +39,6 @@ public class HomeController {
         model.addAttribute("blogList", blogList);
         model.addAttribute("newBlog", newBlog);
 
-        return "index";
+        return "home";
     }
 }

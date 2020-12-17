@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/styles.css">
+
+    <title th:text="${user.name}"></title>
+
+    <style>
+        .emp-profile{
+            padding: 3%;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            border-radius: 0.5rem;
+            background: #fff;
+        }
+        .profile-img{
+            border-radius: 5px;
+        }
+        .profile-img img{
+            width: 70%;
+            height: 100%;
+            border-radius: 5px;
+        }
+        .profile-img .file {
+            position: relative;
+            overflow: hidden;
+            margin-top: -18%;
+            width: 70%;
+            border: none;
+            border-radius: 0;
+            font-size: 15px;
+            background: #212529b8;
+        }
+        .profile-img .file input {
+            position: absolute;
+            opacity: 0;
+            right: 0;
+            top: 0;
+            border-radius: 5px;
+        }
+        .profile-head h5{
+            color: #333;
+        }
+        .profile-head h6{
+            color: #0062cc;
+        }
+        #list .nav-tabs{
+            margin-bottom:5%;
+        }
+        #list .nav-tabs .nav-link{
+            font-weight:600;
+            border: none;
+        }
+        #list .nav-tabs .nav-link.active{
+            border: none;
+            border-bottom:2px solid #0062cc;
+        }
+        .brief{
+            margin-top: -30%;
+        }
+
+        @media only screen and (max-width: 991px){
+            .brief {
+                margin-top: -1%;
+                padding: 0;
+            }
+            .emp-profile {
+                min-width: auto;
+            }
+            .profile-head h5{
+                text-align: center;
+            }
+            .profile-img{
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <div class="col-4 pt-1">
+                <a class="text-muted" href="#">Subscribe</a>
+            </div>
+            <div class="col-4 text-center">
+                <a class="blog-header-logo text-dark" th:href="'/'">Blog</a>
+            </div>
+            <div class="col-4 d-flex justify-content-end align-items-center">
+                <a class="text-muted" href="#" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24" focusable="false"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
+                </a>
+                <a class="btn btn-sm btn-outline-secondary" th:href="'/blog/add'">New Blog</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <div th:each="category : ${categoryList}">
+                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/category?id=' + ${category.id}"></a>
+            </div>
+        </nav>
+    </div>
+    <div class="emp-profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5 th:text="${user.name}"></h5>
+                    <p th:text="${user.description}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="brief">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Name</label>
+                        </div>
+                        <div class="col-10">
+                            <label th:text="${user.name}"></label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-10">
+                            <label th:text="${user.email}"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" id="list">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="blogs-tab" data-toggle="tab" href="#blogs" role="tab" aria-controls="blogs" aria-selected="true">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
+                    </li>
+                </ul>
+                <div th:each="blog : ${blogList}">
+                    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <strong class="d-inline-block mb-2" th:style="'color: ' + ${blog.category.color}" th:text="${blog.category.name}"></strong>
+                            <h3 class="mb-0" th:text="${blog.name}"></h3>
+                            <div class="mb-1 text-muted" th:text="${blog.dateAsString}"></div>
+                            <p class="card-text" th:text="${blog.description}"></p>
+                            <a th:href="'/blog?id=' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
+                        </div>
+                        <div class="col image d-none d-lg-block ">
+                            <img th:src="@{${blog.imagePath}}" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="blog-footer">
+    <p>Blog</p>
+    <p>
+        <a href="#">Back to top</a>
+    </p>
+</footer>
+
+</body>
+</html>

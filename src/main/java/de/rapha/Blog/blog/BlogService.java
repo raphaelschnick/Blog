@@ -1,6 +1,7 @@
 package de.rapha.Blog.blog;
 
 import de.rapha.Blog.category.Category;
+import de.rapha.Blog.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.lang.NonNull;
@@ -61,6 +62,16 @@ public class BlogService {
 
         for(Blog blog : this.getList(false)) {
             if(blog.getCategory().getId().equals(category.getId())) {
+                blogList.add(blog);
+            }
+        }
+        return blogList;
+    }
+
+    public List<Blog> getBlogsByUser(@NonNull User user) {
+        List<Blog> blogList = new ArrayList<>();
+        for (Blog blog : this.getList(false)) {
+            if(blog.getUser().getId().equals(user.getId())) {
                 blogList.add(blog);
             }
         }
