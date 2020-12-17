@@ -1,7 +1,9 @@
 CREATE TABLE user (
     id bigint NOT NULL AUTO_INCREMENT,
-    name character varying(256),
-    password character varying(256),
+    name character,
+    email character,
+    description character varying(612),
+    password character,
 
     CONSTRAINT PK_user_id PRIMARY KEY (id)
 );

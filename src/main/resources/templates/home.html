@@ -13,7 +13,7 @@
 
     <style>
         @media only screen and (max-width: 991px){
-            #image {
+            #newImage, #image {
                 display: none;
             }
         }
@@ -54,7 +54,7 @@
                 <div class="mb-1" th:text="${newBlog.dateAsString}"></div>
                 <p class="lead my-3" th:text="${newBlog.description}"></p>
             </div>
-            <div class="col" id="image">
+            <div class="col" id="newImage">
                 <img th:src="@{${newBlog.imagePath}}" class="img-fluid">
             </div>
         </div>
@@ -74,7 +74,7 @@
                     <p class="card-text" th:text="${blog.description}"></p>
                     <a th:href="'/blog?id=' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
                 </div>
-                <div class="col d-none d-lg-block" id="image">
+                <div class="col d-none d-lg-block", id="image">
                     <img th:src="@{${blog.imagePath}}" class="img-fluid">
                 </div>
             </div>

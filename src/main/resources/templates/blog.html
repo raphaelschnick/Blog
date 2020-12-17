@@ -48,6 +48,7 @@
         <h2 class="blog-post-title" th:text="${blog.name}"></h2>
         <p class="blog-post-meta" th:text="${blog.dateAsString}"></p>
         <a class="blog-post-meta" th:text="${blog.user.name}" th:href="'/user?id=' + ${blog.user.id}"></a>
+        <br><br>
 
         <div class="row">
             <div class="col">
@@ -61,11 +62,13 @@
         <p th:text="${blog.text}"></p>
     </div>
 </main>
-</body>
+
 <footer class="blog-footer">
     <p>Blog</p>
     <p>
         <a href="#">Back to top</a>
     </p>
 </footer>
+
+</body>
 </html>
