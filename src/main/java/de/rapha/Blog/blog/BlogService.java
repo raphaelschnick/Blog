@@ -44,7 +44,7 @@ public class BlogService {
         return this.repository.findById(id).orElseThrow();
     }
 
-    public List<Blog> getList(Boolean asc) {
+    public List<Blog> getList(@NonNull Boolean asc) {
 
         List<Blog> list;
 
