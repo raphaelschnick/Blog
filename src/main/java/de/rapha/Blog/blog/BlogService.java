@@ -60,8 +60,10 @@ public class BlogService {
         List<Blog> blogList = new ArrayList<>();
 
         for(Blog blog : this.getList(false)) {
-            if(blog.getCategory().getId().equals(category.getId())) {
-                blogList.add(blog);
+            if(blog != null) {
+                if(blog.getCategory().getId().equals(category.getId())) {
+                    blogList.add(blog);
+                }
             }
         }
         return blogList;

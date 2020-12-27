@@ -34,7 +34,7 @@ public class CategoryService {
     }
 
     public Category getByName(@NonNull String name) {
-        Category result = null;
+        Category result = this.get(1L);
         for (Category category : this.getList(true)) {
             if(category.getName().toLowerCase().equals(name.toLowerCase())) {
                 result = category;
