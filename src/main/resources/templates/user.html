@@ -103,10 +103,11 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <div th:each="category : ${categoryList}">
-                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/category?id=' + ${category.id}"></a>
+                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/' + ${category.name.toLowerCase()}"></a>
             </div>
         </nav>
     </div>
+
     <div class="emp-profile">
         <form th:action="@{/user}" method="post" th:object="${user}" enctype="multipart/form-data">
             <div class="row">
@@ -163,7 +164,7 @@
                                 <h3 class="mb-0" th:text="${blog.name}"></h3>
                                 <div class="mb-1 text-muted" th:text="${blog.dateAsString}"></div>
                                 <p class="card-text" th:text="${blog.description}"></p>
-                                <a th:href="'/blog?id=' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
+                                <a th:href="'/blog/' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
                             </div>
                             <div class="col image d-none d-lg-block ">
                                 <img th:src="@{${blog.imagePath}}" class="img-fluid">

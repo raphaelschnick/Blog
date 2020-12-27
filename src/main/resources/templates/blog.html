@@ -37,7 +37,7 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <div th:each="category : ${categoryList}">
-                <a class="p-2" th:text="${category.name}" th:style="'color: ' + ${category.color}" th:href="'/category?id=' + ${category.id}"></a>
+                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/' + ${category.name.toLowerCase()}"></a>
             </div>
         </nav>
     </div>
@@ -47,7 +47,7 @@
     <div class="blog-post">
         <h2 class="blog-post-title" th:text="${blog.name}"></h2>
         <p class="blog-post-meta" th:text="${blog.dateAsString}"></p>
-        <a class="blog-post-meta" th:text="${blog.user.name}" th:href="'/user?id=' + ${blog.user.id}"></a>
+        <a class="blog-post-meta" th:text="${blog.user.name}" th:href="'/user/' + ${blog.user.id}"></a>
         <br><br>
 
         <div class="row">

@@ -33,6 +33,16 @@ public class CategoryService {
         return this.repository.findById(id).orElseThrow();
     }
 
+    public Category getByName(@NonNull String name) {
+        Category result = null;
+        for (Category category : this.getList(true)) {
+            if(category.getName().toLowerCase().equals(name.toLowerCase())) {
+                result = category;
+            }
+        }
+        return result;
+    }
+
     public List<Category> getList(Boolean asc) {
 
         List<Category> list;
