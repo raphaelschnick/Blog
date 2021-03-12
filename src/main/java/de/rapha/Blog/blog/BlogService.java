@@ -8,7 +8,6 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -44,7 +43,7 @@ public class BlogService {
         return this.repository.findById(id).orElseThrow();
     }
 
-    public List<Blog> getList(Boolean asc) {
+    public List<Blog> getList(@NonNull Boolean asc) {
 
         List<Blog> list;
 
@@ -61,8 +60,10 @@ public class BlogService {
         List<Blog> blogList = new ArrayList<>();
 
         for(Blog blog : this.getList(false)) {
-            if(blog.getCategory().getId().equals(category.getId())) {
-                blogList.add(blog);
+            if(blog != null) {
+                if(blog.getCategory().getId().equals(category.getId())) {
+                    blogList.add(blog);
+                }
             }
         }
         return blogList;

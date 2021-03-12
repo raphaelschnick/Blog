@@ -3,6 +3,7 @@ CREATE TABLE user (
     name character,
     email character,
     description character varying(612),
+    photo varchar,
     password character,
 
     CONSTRAINT PK_user_id PRIMARY KEY (id)

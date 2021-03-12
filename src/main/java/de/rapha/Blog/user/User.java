@@ -27,6 +27,10 @@ public class User {
     @Column(name="password", nullable = false, unique = false)
     private String password;
 
+    @Column(name="photo", nullable = true, unique = false)
+    private String photo;
+
+
     public String getName() {
         return name;
     }
@@ -67,6 +71,21 @@ public class User {
         this.description = description;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    @Transient
+    public String getPhotoPath() {
+        if(photo == null || id == null) return null;
+
+        return "/data/user/" + id + "/" + photo;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -75,6 +94,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
                 ", password='" + password + '\'' +
+                ", photo='" + photo + '\'' +
                 '}';
     }
 }

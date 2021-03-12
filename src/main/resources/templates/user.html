@@ -5,8 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <link href="/css/styles.css" rel="stylesheet">
 
     <title th:text="${user.name}"></title>
 
@@ -103,74 +106,78 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <div th:each="category : ${categoryList}">
-                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/category?id=' + ${category.id}"></a>
+                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/' + ${category.name.toLowerCase()}"></a>
             </div>
         </nav>
     </div>
+
     <div class="emp-profile">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="profile-head">
-                    <h5 th:text="${user.name}"></h5>
-                    <p th:text="${user.description}"></p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="brief">
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Name</label>
-                        </div>
-                        <div class="col-10">
-                            <label th:text="${user.name}"></label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Email</label>
-                        </div>
-                        <div class="col-10">
-                            <label th:text="${user.email}"></label>
+        <form th:action="@{/user}" method="post" th:object="${user}" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img th:src="${user.photoPath}" class="img-fluid">
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input type="file" name="image" accept="image/png, image/jpeg"/>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5 th:text="${user.name}"></h5>
+                        <p th:text="${user.description}"></p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8" id="list">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" id="blogs-tab" data-toggle="tab" href="#blogs" role="tab" aria-controls="blogs" aria-selected="true">Blogs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
-                    </li>
-                </ul>
-                <div th:each="blog : ${blogList}">
-                    <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                        <div class="col p-4 d-flex flex-column position-static">
-                            <strong class="d-inline-block mb-2" th:style="'color: ' + ${blog.category.color}" th:text="${blog.category.name}"></strong>
-                            <h3 class="mb-0" th:text="${blog.name}"></h3>
-                            <div class="mb-1 text-muted" th:text="${blog.dateAsString}"></div>
-                            <p class="card-text" th:text="${blog.description}"></p>
-                            <a th:href="'/blog?id=' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="brief">
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-10">
+                                <label th:text="${user.name}"></label>
+                            </div>
                         </div>
-                        <div class="col image d-none d-lg-block ">
-                            <img th:src="@{${blog.imagePath}}" class="img-fluid">
+                        <div class="row">
+                            <div class="col-2">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-10">
+                                <label th:text="${user.email}"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8" id="list">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="blogs-tab" data-toggle="tab" href="#blogs" role="tab" aria-controls="blogs" aria-selected="true">Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Comments</a>
+                        </li>
+                    </ul>
+                    <div th:each="blog : ${blogList}">
+                        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="d-inline-block mb-2" th:style="'color: ' + ${blog.category.color}" th:text="${blog.category.name}"></strong>
+                                <h3 class="mb-0" th:text="${blog.name}"></h3>
+                                <div class="mb-1 text-muted" th:text="${blog.dateAsString}"></div>
+                                <p class="card-text" th:text="${blog.description}"></p>
+                                <a th:href="'/blog/' + ${blog.id}" class="stretched-link text-muted">Continue reading</a>
+                            </div>
+                            <div class="col image d-none d-lg-block ">
+                                <img th:src="@{${blog.imagePath}}" class="img-fluid">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <button type="submit" class="btn btn-dark">Fertig!</button>
+        </form>
     </div>
 </div>
 

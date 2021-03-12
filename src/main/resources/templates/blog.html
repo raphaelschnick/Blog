@@ -7,9 +7,11 @@
     <meta name="author" content="Raphael Schnick">
     <title>Blog</title>
 
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
-    <link href="/styles.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <link href="/css/styles.css" rel="stylesheet">
 
     <style>
 
@@ -37,7 +39,7 @@
     <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
             <div th:each="category : ${categoryList}">
-                <a class="p-2" th:text="${category.name}" th:style="'color: ' + ${category.color}" th:href="'/category?id=' + ${category.id}"></a>
+                <a class="p-2" th:style="'color: ' + ${category.color}" th:text="${category.name}" th:href="'/' + ${category.name.toLowerCase()}"></a>
             </div>
         </nav>
     </div>
@@ -47,7 +49,7 @@
     <div class="blog-post">
         <h2 class="blog-post-title" th:text="${blog.name}"></h2>
         <p class="blog-post-meta" th:text="${blog.dateAsString}"></p>
-        <a class="blog-post-meta" th:text="${blog.user.name}" th:href="'/user?id=' + ${blog.user.id}"></a>
+        <a class="blog-post-meta" th:text="${blog.user.name}" th:href="'/user/' + ${blog.user.id}"></a>
         <br><br>
 
         <div class="row">

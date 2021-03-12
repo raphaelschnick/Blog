@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -21,11 +21,11 @@ public class CategoryController {
     @Autowired
     CategoryService categoryService;
 
-    @GetMapping("/category")
-    public String getCategoryById(@RequestParam(name="id", required=false) Long id, Model model) {
+    @GetMapping("/{name}")
+    public String getCategoryByName(@PathVariable(name = "name") String name, Model model) {
 
         List<Category> categoryList = categoryService.getList(true);
-        Category category = categoryService.get(id);
+        Category category = categoryService.getByName(name);
         List<Blog> blogList = blogService.getCategory(category);
         Blog newBlog = blogList.get(0);
 
